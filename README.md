@@ -19,8 +19,8 @@ Container/Presentationalパターンを利用することで、アプリケー�
 ## このリポジトリの責務
 
 このリポジトリでは、データとロジックを扱うContainer Componentを開発している。  
-一方、UI部分はPresentational Componentとして、[別のリポジトリ][1]にライブラリ形式で分けている。
-[1]: https://github.com/kyohei-norita/palettea-ui
+一方、UI部分はPresentational Componentとして、別のリポジトリにライブラリ形式で分けている。
+https://github.com/kyohei-norita/palettea-ui
 
 ## 補足情報
 
