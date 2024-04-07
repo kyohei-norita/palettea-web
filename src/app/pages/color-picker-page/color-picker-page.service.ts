@@ -1,8 +1,9 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {RGB, TableRow, Table, TableCellType} from "palettea-ui";
+import {RGB, Table, TableCellType, TableRow} from "palettea-ui";
 import {diff, rgb_to_lab, RGBColor} from "color-diff";
+import {environment} from "../../../environments/environment";
 
 type PaintData = {
   id: string,
@@ -34,12 +35,13 @@ const closestPaint = (targetColor: RGBColor, paint: PaintData): ClosestPaint => 
   providedIn: 'root'
 })
 export class ColorPickerPageService {
+  private baseUrl = environment.baseUrl;
   private readonly _http = inject(HttpClient)
 
   closestPaintTable(target: RGB): Observable<Table<['name', 'rgb', 'colorPreview', 'diff']>> {
     const color = {R: target.r, G: target.g, B: target.b} satisfies RGBColor
     return this._http
-      .get('/assets/paint-data.json')
+      .get(`${this.baseUrl}assets/paint-data.json`)
       .pipe(
         map(res => res as PaintData[]),
         map(paintList => paintList.map(paint => closestPaint(color, paint))),
