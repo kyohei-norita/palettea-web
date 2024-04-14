@@ -32,7 +32,7 @@ jobs:
 
       - name: Build library
         run: |
-          npx ng build -c production
+          npx ng build -c production --base-href=/palettea-web/ --output-path=dist/palettea-web
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
