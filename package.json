@@ -1,10 +1,10 @@
 {
   "name": "palettea-web",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build -c production --base-href=/palettea-web/ --output-path=dist/palettea-web && cp dist/palettea-web/index.html dist/palettea-web/404.html",
+    "build": "ng build -c production --base-href=/palettea-web/ --output-path=dist/palettea-web",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng deploy --base-href=/palettea-web/ --dir=dist/palettea-web"
