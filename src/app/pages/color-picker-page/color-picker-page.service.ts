@@ -31,6 +31,9 @@ const closestPaint = (targetColor: RGBColor, paint: PaintData): ClosestPaint => 
   }
 }
 
+const CLOSEST_PAINT_TABLE_KEYS = ['name', 'rgb', 'colorPreview', 'diff'] as const
+type ClosestPaintTableKeys = typeof CLOSEST_PAINT_TABLE_KEYS
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,12 +41,11 @@ export class ColorPickerPageService {
   private baseUrl = environment.baseUrl;
   private readonly _http = inject(HttpClient)
 
-  closestPaintTable(target: RGB): Observable<Table<['name', 'rgb', 'colorPreview', 'diff']>> {
+  closestPaintTable(target: RGB): Observable<Table<ClosestPaintTableKeys>> {
     const color = {R: target.r, G: target.g, B: target.b} satisfies RGBColor
     return this._http
-      .get(`${this.baseUrl}assets/paint-data.json`)
+      .get<PaintData[]>(`${this.baseUrl}assets/paint-data.json`)
       .pipe(
-        map(res => res as PaintData[]),
         map(paintList => paintList.map(paint => closestPaint(color, paint))),
         map(paints => paints.sort(((a, b) => (a.difference - b.difference)))),
         map(toPaintTable)
@@ -51,7 +53,7 @@ export class ColorPickerPageService {
   }
 }
 
-const toPaintTable = (paints: ClosestPaint[]): Table<['name', 'rgb', 'colorPreview', 'diff']> => {
+const toPaintTable = (paints: ClosestPaint[]): Table<ClosestPaintTableKeys> => {
   return {
     headers: {
       name: {title: 'name'},
@@ -63,7 +65,7 @@ const toPaintTable = (paints: ClosestPaint[]): Table<['name', 'rgb', 'colorPrevi
   }
 }
 
-const toPaintTableTableRow = (paint: ClosestPaint): TableRow<['name', 'rgb', 'colorPreview', 'diff']> => {
+const toPaintTableTableRow = (paint: ClosestPaint): TableRow<ClosestPaintTableKeys> => {
   return {
     name: {
       type: TableCellType.STRING,
