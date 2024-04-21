@@ -23,4 +23,4 @@ https://github.com/kyohei-norita/palettea-ui
 
 この塗料検索アプリは、自身の技術力を示すポートフォリオの一環として開発した。  
 アプリケーションは以下のURLからアクセス  
-https://kyohei-norita.github.io/palettea-web/color-picker
+https://kyohei-norita.github.io/palettea-web/top/color-picker
