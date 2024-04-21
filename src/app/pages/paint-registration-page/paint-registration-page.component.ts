@@ -22,16 +22,16 @@ const COATING_TYPE_SELECT_OPTIONS: Option[] = [
 ]
 
 const PAINT_REGISTRATION_PAGE: PaintRegistrationPageTemplateInput = {
-  pageTitle: 'Page Registration',
+  pageTitle: 'Paint Registration',
   forms: {
     paintName: {
-      label: 'paintName',
+      label: 'paint name',
     },
     colorCode: {
-      label: 'colorCode',
+      label: 'color code',
     },
     coatingType: {
-      label: 'coatingType',
+      label: 'coating type',
       options: COATING_TYPE_SELECT_OPTIONS,
     },
   },
@@ -55,7 +55,6 @@ export class PaintRegistrationPageComponent {
   private _paintRegistrationService = inject(PageRegistrationPageService)
 
   onClickRegisterButton(output: PaintRegistrationPageTemplateOutput) {
-    console.log(output)
     this._paintRegistrationService.register().subscribe()
   }
 }

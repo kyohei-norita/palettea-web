@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 
 export type PageRegistrationInput = {
   name: string,
@@ -18,10 +18,12 @@ export type PageRegistrationInput = {
   providedIn: 'root'
 })
 export class PageRegistrationPageService {
-  private baseUrl = environment.baseUrl;
+  private production = environment.production;
   private readonly _http = inject(HttpClient)
 
   register(): Observable<void> {
+    if (this.production) return of();
+
     return this._http.post<void>('/api/paint',
       {
         "name": "test name",
