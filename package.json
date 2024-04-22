@@ -20,7 +20,7 @@
     "@angular/router": "^16.2.0",
     "@types/color-diff": "^1.2.5",
     "color-diff": "^1.4.0",
-    "palettea-ui": "^0.0.26",
+    "palettea-ui": "^0.0.27",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
